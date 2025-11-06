@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kasir Sederhana</title>
+</head>
+<body>
+    <h2> Pogram Kasir Sederhana</h2>
+
+    <form>
+        <label for="harga">Harga Barang (Rp):</label>
+        <input type="number" id="harga"><br><br>
+
+        <label for="jumlah">Jumlah Barang:</label>
+        <input type="number" id="jumlah"><br><br>
+
+        <input type="button" value="Hitung Total" onclick="hitungTotal()">
+    </form>
+
+    <h3 id="hasil"></h3>
+
+    <script>
+        function hitungTotal() {
+            let harga = document.getElementById("harga").value * 1;
+            let jumlah = document.getElementById("jumlah").value * 1;
+
+            let total = harga * jumlah;
+            let diskon = 0;
+
+            if (total > 100000) {
+                diskon = total * 0.10;
+            }
+
+            let totalBayar = total - diskon;
+
+            let formatRupiah = (angka) => angka.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+
+            document.getElementById("hasil").innerHTML = `
+                Total Belanja: ${formatRupiah(total)} <br>
+                Diskon: ${formatRupiah(diskon)} <br>
+                <b>Total Bayar: ${formatRupiah(totalBayar)}</b>
+            `;
+        }
+    </script>
+</body>
+</html>
